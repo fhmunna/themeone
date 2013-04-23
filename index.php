@@ -52,10 +52,10 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="#">Project name</a>
+          <a class="brand" href="<?php echo get_option('home'); ?>"><?php bloginfo('name'); ?></a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <?php wp_nav_menu( array( 'sort_column' => 'menu_order', 'menu_class' => 'nav', 'theme_location' => 'primary-menu' ) ); ?>
+              <?php wp_nav_menu( array( 'sort_column' => 'menu_order', 'container' => false,'items_wrap' => '%3$s','menu_class' => 'nav', 'theme_location' => 'primary-menu' ) ); ?>
 
             </ul>
             <form class="navbar-form pull-right">
@@ -72,7 +72,7 @@
 
       <!-- Main hero unit for a primary marketing message or call to action -->
       <div class="hero-unit">
-        <h1><a href="<?php echo get_option('home'); ?>"><?php bloginfo('name'); ?></a></h1>
+        <h1><a href="#">Write Something or it Collaps</a></h1>
         <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
         
       </div>
@@ -82,12 +82,18 @@
       	<?php if(have_posts()) : ?><?php while(have_posts()) : the_post(); ?>
         <div class="span4">
           <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-          <p><?php the_content(); ?></p>
-		  <p><a class="btn" href="#">View details &raquo;</a></p>
+          
+          <p><?php the_content('<span class="btn">Read More</span>'); ?></p>
+		  
         </div>
+
+        
         <?php endwhile; ?>
         <?php endif; ?>
        
+       <div class="navig">  
+            <?php previous_post_link('<strong><< %link</strong>') ?>  &nbsp &nbsp &nbsp   <?php next_post_link('<strong> %link >></strong>') ?>
+        </div>
       </div>
 
       <hr>
